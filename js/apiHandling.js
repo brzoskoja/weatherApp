@@ -3,7 +3,7 @@ const daysOfWeek = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek'
 
 async function getMyCoordinates() {
     try {
-        let response = await fetch("http://ip-api.com/json/");
+        let response = await fetch("https://ip-api.com/json/");
         let coordinates = await response.json();
         return { lon: coordinates.lon, lat: coordinates.lat, city: coordinates.city };
     }
