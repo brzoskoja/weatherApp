@@ -3,9 +3,11 @@ const daysOfWeek = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek'
 
 async function getMyCoordinates() {
     try {
-        let response = await fetch("https://ip-api.com/json/");
+        let ip = await fetch("https://api.ipify.org/?format=json");
+        ip = await ip.json();
+        let response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=3aeb776ade0440229cd9b33e5718ace1&ip=${ip.ip}`);
         let coordinates = await response.json();
-        return { lon: coordinates.lon, lat: coordinates.lat, city: coordinates.city };
+        return { lon: coordinates.longitude, lat: coordinates.latitude, city: coordinates.city };
     }
     catch (err) {
         console.log(err);
