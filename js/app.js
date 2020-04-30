@@ -1,5 +1,5 @@
 import { getCoordinatesForCity, getMyCoordinates, getWeatherForCoordinates, updateWeather, citiesArray } from "./apiHandling.js"
-
+export {changeWeather}
 const addCityButton = document.getElementById("add-city");
 const deleteButton = document.querySelector(".btn--close");
 const firstWeatherModule = document.getElementsByClassName("module__weather")[0];
@@ -57,6 +57,17 @@ function newWeather(city) {
         let newWeatherModule = firstWeatherModule.cloneNode(true);
         document.getElementById("app").appendChild(newWeatherModule);
         return updateWeather(newWeatherModule, weather);
+    })
+    .catch((error) => console.log(error))
+    .then(body.classList.toggle("loading"));
+}
+
+function changeWeather(city, weatherModule) {
+    body.classList.toggle("loading");
+    getCoordinatesForCity(city)
+    .then((myCoordinates) => getWeatherForCoordinates(myCoordinates))
+    .then((weather) => {    
+        return updateWeather(weatherModule, weather);
     })
     .catch((error) => console.log(error))
     .then(body.classList.toggle("loading"));

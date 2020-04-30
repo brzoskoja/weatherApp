@@ -523,5 +523,8 @@ form.find-city button {
     transition: background 0.2s;
     text-transform: capitalize;
   }
+  .active{
+      background-color:lightgoldenrodyellow;
+  }
 
   
