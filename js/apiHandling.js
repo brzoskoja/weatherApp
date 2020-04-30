@@ -66,6 +66,11 @@ function updateWeather(weatherModule, weatherData) {
         cityName.setAttribute("contentEditable", true);
         cityName.classList.add("active");
         cityName.focus();
+        cityName.addEventListener("keydown",(e)=>{
+            if(e.keyCode===13){
+                cityName.blur();
+              }
+        });
         cityName.addEventListener("blur", () => {
         changeWeather(cityName.innerText, weatherModule);
         cityName.classList.remove("active");
